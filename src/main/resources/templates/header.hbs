@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ResMat – Réservation de matériel</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; color: #222; }
+    nav { background: #1f3a5f; color: #fff; padding: 10px 20px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    nav a, nav button { color: #fff; text-decoration: none; background: none; border: 0; font-size: 1em; cursor: pointer; }
+    nav .droite { margin-left: auto; display: flex; gap: 12px; align-items: center; }
+    main { max-width: 800px; margin: 20px auto; padding: 0 16px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border-bottom: 1px solid #ddd; padding: 8px; text-align: left; }
+    .succes { background: #e6f4ea; border: 1px solid #2e7d32; padding: 10px; margin-bottom: 12px; }
+    .erreur { background: #fdecea; border: 1px solid #c62828; padding: 10px; margin-bottom: 12px; }
+    .champ-erreur { color: #c62828; font-size: .9em; }
+    input[type=text], input[type=email], input[type=password] { width: 100%; padding: 8px; box-sizing: border-box; }
+    .btn { display: inline-block; padding: 6px 12px; background: #1f3a5f; color: #fff; border: 0; text-decoration: none; cursor: pointer; }
+    .btn-danger { background: #c62828; }
+    form.inline { display: inline; }
+  </style>
+</head>
+<body>
+<nav>
+  <strong>ResMat</strong>
+  {{#authentifie}}
+    <a href="/">Accueil</a>
+    {{#gestionnaire}}<a href="/gestionnaire/types">Types de matériel</a>{{/gestionnaire}}
+    <span class="droite">
+      <span>{{username}}</span>
+      <form class="inline" action="/logout" method="post">
+        <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}">
+        <button type="submit">Déconnexion</button>
+      </form>
+    </span>
+  {{/authentifie}}
+</nav>
+<main>

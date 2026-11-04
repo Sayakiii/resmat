@@ -1,0 +1,13 @@
+{{> header}}
+<h1>{{titre}}</h1>
+<form action="{{action}}" method="post">
+  <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}">
+  <p>
+    <label for="libelle">Libellé</label><br>
+    <input type="text" id="libelle" name="libelle" value="{{typeMateriel.libelle}}">
+    {{#erreurLibelle}}<span class="champ-erreur">{{erreurLibelle}}</span>{{/erreurLibelle}}
+  </p>
+  <button class="btn" type="submit">Enregistrer</button>
+  <a href="/gestionnaire/types">Annuler</a>
+</form>
+{{> footer}}

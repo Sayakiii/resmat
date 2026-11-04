@@ -1,0 +1,10 @@
+{{> header}}
+<h1>Bienvenue sur ResMat</h1>
+<p>Application de réservation de matériel.</p>
+{{#gestionnaire}}
+  <p>Espace gestionnaire : <a href="/gestionnaire/types">gérer les types de matériel</a>.</p>
+{{/gestionnaire}}
+{{^gestionnaire}}
+  <p>Espace emprunteur : le catalogue et les demandes de réservation arriveront dans les prochaines étapes.</p>
+{{/gestionnaire}}
+{{> footer}}

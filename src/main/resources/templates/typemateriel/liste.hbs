@@ -1,0 +1,28 @@
+{{> header}}
+<h1>Types de matériel</h1>
+{{#succes}}<div class="succes">{{succes}}</div>{{/succes}}
+{{#erreurGlobale}}<div class="erreur">{{erreurGlobale}}</div>{{/erreurGlobale}}
+<p><a class="btn" href="/gestionnaire/types/nouveau">Ajouter un type</a></p>
+<table>
+  <thead><tr><th>Libellé</th><th>Matériels</th><th>Actions</th></tr></thead>
+  <tbody>
+  {{#types}}
+    <tr>
+      <td>{{libelle}}</td>
+      <td>{{nbMateriels}}</td>
+      <td>
+        <a class="btn" href="/gestionnaire/types/{{id}}/modifier">Modifier</a>
+        <form class="inline" action="/gestionnaire/types/{{id}}/supprimer" method="post"
+              onsubmit="return confirm('Supprimer ce type de matériel ?');">
+          <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}">
+          <button class="btn btn-danger" type="submit">Supprimer</button>
+        </form>
+      </td>
+    </tr>
+  {{/types}}
+  {{^types}}
+    <tr><td colspan="3">Aucun type de matériel.</td></tr>
+  {{/types}}
+  </tbody>
+</table>
+{{> footer}}
